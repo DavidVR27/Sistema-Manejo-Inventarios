@@ -1,5 +1,7 @@
 package dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import enums.TransactionStatus;
 import enums.TransactionType;
 import jakarta.persistence.*;
@@ -11,57 +13,33 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table(name = "transactions")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private Integer totalProducts;
 
     private BigDecimal totalPrice;
 
-    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
-    @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
     private String description;
 
     private LocalDateTime updatedAt;
 
-    private final LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private UserDTO user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
     private ProductDTO product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_id")
     private SupplierDTO supplier;
 
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", totalProducts=" + totalProducts +
-                ", totalPrice=" + totalPrice +
-                ", transactionType=" + transactionType +
-                ", status=" + status +
-                ", description='" + description + '\'' +
-                ", updatedAt=" + updatedAt +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }
