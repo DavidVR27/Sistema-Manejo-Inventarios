@@ -25,7 +25,7 @@ public class Product {
     private long id;
 
     @NotBlank(message = "Nombre es requerido")
-    private String nombre;
+    private String name;
 
     @NotBlank(message = "SKU es requerido")
     @Column(unique = true)
@@ -52,7 +52,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                ", name='" + name + '\'' +
                 ", sku='" + sku + '\'' +
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +
