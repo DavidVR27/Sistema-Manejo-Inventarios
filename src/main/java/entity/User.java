@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -57,4 +58,5 @@ public class User {
                 ", createdAt=" + createdAt +
                 '}';
     }
+
 }
