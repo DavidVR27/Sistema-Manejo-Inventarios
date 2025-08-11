@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/transactions/{userId}")
     public ResponseEntity<Response> getUserTransactions(@PathVariable Long userId){
-        return ResponseEntity.ok(userService.getUserTransactions(userId);
+        return ResponseEntity.ok(userService.getUserTransactions(userId));
     }
 
     @GetMapping("/current")
