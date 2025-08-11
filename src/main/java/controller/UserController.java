@@ -2,6 +2,7 @@ package controller;
 
 import dto.Response;
 import dto.UserDTO;
+import entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/current")
-    public ResponseEntity<Response> getCurrentUser(){
+    public ResponseEntity<User> getCurrentUser(){
         return ResponseEntity.ok(userService.getCurrentLoggedInUser());
     }
 
