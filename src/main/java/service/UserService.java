@@ -13,5 +13,5 @@ public interface UserService {
     User getCurrentLoggedInUser();
     Response updateUser(Long id, UserDTO userDTO);
     Response deleteUser(Long id);
-    Response getUserTransactions();
+    Response getUserTransactions(Long id);
 }
