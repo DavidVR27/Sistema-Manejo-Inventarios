@@ -35,7 +35,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .subject(email)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() * EXPIRATION_TIME_IN_MILLISECONDS))
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_IN_MILLISECONDS))
                 .signWith(key)
                 .compact();
     }
