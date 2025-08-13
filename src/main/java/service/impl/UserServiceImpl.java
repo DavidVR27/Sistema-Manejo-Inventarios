@@ -6,12 +6,15 @@ import dto.Response;
 import dto.UserDTO;
 import entity.User;
 import enums.UserRole;
+import config.ModelMapperConfig;
 import exceptions.InvalidCredentialsException;
 import exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import repository.UserRepository;
 import security.JwtUtils;
 import service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
@@ -30,7 +33,10 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
     private final ModelMapper modelMapper;
+
     private final JwtUtils jwtUtils;
 
 
@@ -119,7 +125,7 @@ public class UserServiceImpl implements UserService {
         if (userDTO.getRole() != null) existingUser.setRole(userDTO.getRole());
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
-            existingUser.setPhoneNumber(passwordEncoder.encode(userDTO.getPassword()));
+            existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
 
         userRepository.save(existingUser);
