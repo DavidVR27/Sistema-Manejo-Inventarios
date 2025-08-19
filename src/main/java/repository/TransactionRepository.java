@@ -10,11 +10,12 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction,Long> {
+
     @Query("SELECT t FROM Transaction t " +
             "WHERE YEAR(t.createdAt) = :year AND MONTH(t.createdAt) = :month ")
     List<Transaction> findAllByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
-
+    // Estamos buscando en este campo; Descripción, nota, status, nombre del producto y sku de las transacciones
     @Query("SELECT t FROM Transaction t " +
             "LEFT JOIN t.product p " +
             "WHERE (:searchText IS NULL OR " +
@@ -22,5 +23,5 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
             "LOWER(t.status) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(p.name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(p.sku) LIKE LOWER(CONCAT('%', :searchText, '%')))")
-    Page<Transaction> findBySearchText(@Param("searchText") String searchText, Pageable pageable);
+    Page<Transaction> searchTransactions(@Param("searchText") String searchText, Pageable pageable);
 }
