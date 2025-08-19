@@ -18,8 +18,8 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Nombre es requerido")
-    private String nombre;
+    @NotBlank(message = "Name is required")
+    private String name;
 
     private String address;
 }
