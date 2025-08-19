@@ -39,7 +39,7 @@ public class Product {
 
     private String description;
 
-    private String imageURL;
+    private String ImageUrl;
     private LocalDateTime expiryDate;
     private LocalDateTime updatedAt;
     private final LocalDateTime createdAt = LocalDateTime.now();
@@ -57,7 +57,7 @@ public class Product {
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +
                 ", description='" + description + '\'' +
-                ", imageURL='" + imageURL + '\'' +
+                ", imageURL='" + ImageUrl + '\'' +
                 ", expiryDate=" + expiryDate +
                 ", updatedAt=" + updatedAt +
                 ", createdAt=" + createdAt +
